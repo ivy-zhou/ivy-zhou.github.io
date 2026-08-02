@@ -21,16 +21,28 @@
 </head>
 
 <body>
-    <div class="menu-wrap">
-        <nav class="menu">
-            <div class="profile"><span>Settings</span></div>
+    <div class="menu-wrap" id="life-settings" aria-hidden="true">
+        <nav class="menu" aria-label="Game of Life settings">
+            <h2 class="profile">Life settings</h2>
             <div class="link-list">
-                <label><span>Alive Colour: </span>
-                    <input class="colorinput" id="alive" type="color" value="#d9d9d9">
-                </label>
-                <label><span>Dead Colour: </span>
-                    <input class="colorinput" id="dead" type="color" value="#eff2ef">
-                </label>
+                <div class="color-setting">
+                    <label for="alive">Alive colour</label>
+                    <div class="color-control">
+                        <input class="colorinput" id="alive" type="color" value="#d9d9d9"
+                            aria-label="Alive colour picker">
+                        <input class="hexinput" id="alive-hex" type="text" value="#D9D9D9" maxlength="7"
+                            spellcheck="false" aria-label="Alive colour HEX code">
+                    </div>
+                </div>
+                <div class="color-setting">
+                    <label for="dead">Dead colour</label>
+                    <div class="color-control">
+                        <input class="colorinput" id="dead" type="color" value="#eff2ef"
+                            aria-label="Dead colour picker">
+                        <input class="hexinput" id="dead-hex" type="text" value="#EFF2EF" maxlength="7"
+                            spellcheck="false" aria-label="Dead colour HEX code">
+                    </div>
+                </div>
                 <button id="reset-button" type="button">Reset</button>
             </div>
             <div class="icon-list">
@@ -38,15 +50,29 @@
             </div>
         </nav>
     </div>
-    <button class="menu-button" id="open-button" aria-label="Open settings"><span aria-hidden="true">⚙</span></button>
+    <button class="menu-button" id="open-button" aria-label="Open Life settings" aria-controls="life-settings"
+        aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.05.05a2 2 0 1 1-2.83 2.83l-.05-.05A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.08a1.7 1.7 0 0 0-1.1-1.54 1.7 1.7 0 0 0-1.88.34l-.05.05a2 2 0 1 1-2.83-2.83l.05-.05A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.08a1.7 1.7 0 0 0 1.54-1.1 1.7 1.7 0 0 0-.34-1.88l-.05-.05a2 2 0 1 1 2.83-2.83l.05.05A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.08a1.7 1.7 0 0 0 1.1 1.54 1.7 1.7 0 0 0 1.88-.34l.05-.05a2 2 0 1 1 2.83 2.83l-.05.05A1.7 1.7 0 0 0 19.4 9c.12.6.65 1 1.27 1H21a2 2 0 1 1 0 4h-.08a1.7 1.7 0 0 0-1.52 1Z"></path>
+        </svg>
+    </button>
     <div class="content-wrap">
         <canvas id="conway"></canvas>
         <section class="content">
             <header>
                 <div class="branding">
                     <div id="profile-image"></div>
-                    <a href="https://github.com/ivy-zhou" class="brand-icons">GitHub</a>
-                    <a href="https://www.linkedin.com/in/zhouivy/" class="brand-icons">LinkedIn</a>
+                    <a href="https://github.com/ivy-zhou" class="brand-icons" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 .7a11.6 11.6 0 0 0-3.7 22.6c.6.1.8-.3.8-.6v-2.2c-3.4.7-4.1-1.4-4.1-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.8 5.5-5.5 5.8.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.6 11.6 0 0 0 12 .7Z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/zhouivy/" class="brand-icons" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20.5 3H3.5A1.5 1.5 0 0 0 2 4.5v15A1.5 1.5 0 0 0 3.5 21h17a1.5 1.5 0 0 0 1.5-1.5v-15A1.5 1.5 0 0 0 20.5 3ZM8 18H5V9h3v9ZM6.5 7.8A1.75 1.75 0 1 1 6.5 4.3a1.75 1.75 0 0 1 0 3.5ZM19 18h-3v-4.4c0-1.1 0-2.5-1.5-2.5S12.7 12.3 12.7 13.5V18h-3V9h2.9v1.2h.1a3.2 3.2 0 0 1 2.8-1.5c3 0 3.5 2 3.5 4.5V18Z" />
+                        </svg>
+                    </a>
                 </div>
                 <h1>Ivy Zhou<span>code person</span></h1>
                 <nav class="pill-links">

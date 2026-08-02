@@ -186,18 +186,68 @@ class Conway {
             self.initAnimation();
         });
 
-        var aliveColorInput = document.getElementById('alive');
-        aliveColorInput.value = ALIVE_COLOUR;
-        var deadColorInput = document.getElementById('dead');
-        deadColorInput.value = DEAD_COLOUR;
-        aliveColorInput.addEventListener('change', function () {
-            ALIVE_COLOUR = aliveColorInput.value;
-            self.draw();
-        });
-        deadColorInput.addEventListener('change', function () {
-            DEAD_COLOUR = deadColorInput.value;
-            self.draw();
-        });
+        function bindColourInputs(colorInput, hexInput, initialColour, updateColour) {
+            function normaliseHex(value) {
+                var hex = value.trim();
+                if (hex.charAt(0) !== '#') {
+                    hex = '#' + hex;
+                }
+                return /^#[0-9a-f]{6}$/i.test(hex) ? hex.toUpperCase() : false;
+            }
+
+            function applyHex(value) {
+                var hex = normaliseHex(value);
+                if (!hex) {
+                    return false;
+                }
+                colorInput.value = hex;
+                hexInput.value = hex;
+                updateColour(hex);
+                self.draw();
+                return true;
+            }
+
+            colorInput.value = initialColour;
+            hexInput.value = initialColour.toUpperCase();
+
+            colorInput.addEventListener('input', function () {
+                applyHex(colorInput.value);
+            });
+
+            hexInput.addEventListener('input', function () {
+                var hex = normaliseHex(hexInput.value);
+                if (hex) {
+                    colorInput.value = hex;
+                    updateColour(hex);
+                    self.draw();
+                }
+            });
+
+            hexInput.addEventListener('blur', function () {
+                if (!applyHex(hexInput.value)) {
+                    hexInput.value = colorInput.value.toUpperCase();
+                }
+            });
+
+            hexInput.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    hexInput.blur();
+                }
+            });
+        }
+
+        bindColourInputs(
+            document.getElementById('alive'),
+            document.getElementById('alive-hex'),
+            ALIVE_COLOUR,
+            function (hex) { ALIVE_COLOUR = hex; }
+        );
+        bindColourInputs(
+            document.getElementById('dead'),
+            document.getElementById('dead-hex'),
+            DEAD_COLOUR,
+            function (hex) { DEAD_COLOUR = hex; }
+        );
     }
 
     randomGridPos(noOfRows, noOfCols) {
@@ -230,5 +280,5 @@ class Conway {
 }
 
 
-let conwayBG = new Conway();
-conwayBG.start();
+window.conwayBG = new Conway();
+window.conwayBG.start();
