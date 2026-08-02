@@ -3,8 +3,8 @@
 var CELL_SIZE = 64;
 var DEAD = false; // false - dead, true - alive for cells
 var ALIVE = true;
-var ALIVE_COLOUR = "#d9d9d9" // "#FED99B"; // "#282C34"; //75ABBC
-var DEAD_COLOUR = "#EFF2EF" // "#FED18C"; // "#2F343D"; 
+var ALIVE_COLOUR = "#d9d9d9"; // "#FED99B"; // "#282C34"; //75ABBC
+var DEAD_COLOUR = "#EFF2EF"; // "#FED18C"; // "#2F343D"
 var GRID_COLOUR = "#ddd";
 var DISABLED_COLOUR = "#ABB2BF";
 var STARTING_POPULATION = 0.75;
@@ -118,6 +118,7 @@ class Conway {
         window.ctx = this.canvas.getContext('2d');
         this.initAnimation();
         this.interval = false;
+        this.addListeners();
     }
 
     start() {
@@ -151,7 +152,6 @@ class Conway {
         }
 
         this.draw();
-        this.addListeners();
     }
 
     addListeners() {
@@ -191,11 +191,11 @@ class Conway {
         var deadColorInput = document.getElementById('dead');
         deadColorInput.value = DEAD_COLOUR;
         aliveColorInput.addEventListener('change', function () {
-            ALIVE_COLOUR = "#" + aliveColorInput.value;
+            ALIVE_COLOUR = aliveColorInput.value;
             self.draw();
         });
         deadColorInput.addEventListener('change', function () {
-            DEAD_COLOUR = "#" + deadColorInput.value;
+            DEAD_COLOUR = deadColorInput.value;
             self.draw();
         });
     }

@@ -16,13 +16,6 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="favicon.ico" />
 
-    <!-- styling -->
-
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.js"></script>
-
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
@@ -32,57 +25,39 @@
         <nav class="menu">
             <div class="profile"><span>Settings</span></div>
             <div class="link-list">
-                <a><span>Alive Colour: </span>
-                    <input class="jscolor colorinput" id="alive" type="button">
-                </a>
-                <a><span>Dead Color: </span>
-                    <input class="jscolor colorinput" id="dead" type="button">
-                </a>
-                <a id="reset-button"><span>Reset</span></a>
+                <label><span>Alive Colour: </span>
+                    <input class="colorinput" id="alive" type="color" value="#d9d9d9">
+                </label>
+                <label><span>Dead Colour: </span>
+                    <input class="colorinput" id="dead" type="color" value="#eff2ef">
+                </label>
+                <button id="reset-button" type="button">Reset</button>
             </div>
             <div class="icon-list">
-                <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" class="fa fa-fw fa-question-circle"></a>
+                <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">About the Game of Life</a>
             </div>
         </nav>
     </div>
-    <button class="menu-button" id="open-button"><i class="fa fa-fw fa-cog"></i><span>Open Menu</span></button>
+    <button class="menu-button" id="open-button" aria-label="Open settings"><span aria-hidden="true">⚙</span></button>
     <div class="content-wrap">
         <canvas id="conway"></canvas>
         <section class="content">
             <header>
                 <div class="branding">
                     <div id="profile-image"></div>
-                    <a href="https://github.com/ivy-zhou" class="fa fa-github fa-2x brand-icons"></a>
-                    <a href="https://www.linkedin.com/in/zhouivy/" class="fa fa-linkedin fa-2x brand-icons"></a>
+                    <a href="https://github.com/ivy-zhou" class="brand-icons">GitHub</a>
+                    <a href="https://www.linkedin.com/in/zhouivy/" class="brand-icons">LinkedIn</a>
                 </div>
                 <h1>Ivy Zhou<span>code person</span></h1>
                 <nav class="pill-links">
-                    <a href="http://ivy-zhou.github.io/notes/">notes</a>
+                    <a href="/notes/">notes</a>
                 </nav>
             </header>
         </section>
     </div><!-- /content-wrap -->
 
-    <!-- Google Analytics -->
-    <script>
-        (function (b, o, i, l, e, r) {
-            b.GoogleAnalyticsObject = l;
-            b[l] || (b[l] =
-                function () {
-                    (b[l].q = b[l].q || []).push(arguments)
-                });
-            b[l].l = +new Date;
-            e = o.createElement(i);
-            r = o.getElementsByTagName(i)[0];
-            e.src = 'https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e, r)
-        }(window, document, 'script', 'ga'));
-        ga('create', 'UA-66199017-2', 'auto');
-        ga('send', 'pageview');
-
-    </script>
-
     <script src="js/animateBG.js"></script>
     <script src="js/main.js"></script>
 
+</body>
 </html>

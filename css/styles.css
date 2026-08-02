@@ -178,7 +178,7 @@ body,
 }
 
 .menu-button span {
-    display: none;
+    display: inline;
 }
 
 .menu-button:hover {
@@ -234,19 +234,34 @@ body,
     border-top: 3px solid rgba(125, 129, 148, 0.2);
 }
 
-.link-list a {
+.link-list a,
+.link-list label,
+.link-list button {
     display: block;
     margin: 0.25em 0;
     color: #7d8194;
     padding: 0.5em 1.5em;
 }
 
+.link-list button {
+    width: 100%;
+    border: 0;
+    font: inherit;
+    font-weight: 700;
+    text-align: right;
+    background: transparent;
+    cursor: pointer;
+}
+
 .link-list a:hover,
-.link-list a:focus {
+.link-list a:focus,
+.link-list button:hover,
+.link-list button:focus {
     color: #64697d;
 }
 
-.link-list a span {
+.link-list a span,
+.link-list label span {
     margin-left: 10px;
     font-weight: 700;
     vertical-align: middle;
@@ -259,7 +274,7 @@ body,
 }
 
 .icon-list a {
-    font-size: 1.5em;
+    font-size: 0.85em;
     margin-left: 0.25em;
 }
 
@@ -282,9 +297,9 @@ body,
 
 .colorinput {
     margin-left: 10px;
-    padding: 10px;
-    font-size: 1em;
-    width: 90px;
+    padding: 2px;
+    width: 56px;
+    height: 32px;
     -webkit-box-shadow: none;
     box-shadow: none;
     -webkit-appearance: none;
