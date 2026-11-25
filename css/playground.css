@@ -1,62 +1,42 @@
-:root {
-    color-scheme: light;
-    --font-serif: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
-    --font-display: "Iowan Old Style", Baskerville, "Times New Roman", serif;
-    --font-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-    --ink: #282c34;
-    --ink-soft: #5d6270;
-    --paper: #fefeff;
-    --ground: #eff2ef;
-    --line: rgba(55, 58, 71, 0.16);
-    --accent: #fe654f;
-}
+/* Playground page, layered on styles.css (fonts, colours, Game of Life canvas and settings menu). */
 
-*,
-*::after,
-*::before {
-    box-sizing: border-box;
+:root {
+    --font-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 body {
-    margin: 0;
-    color: var(--ink);
-    background: var(--ground);
-    font-family: var(--font-serif);
-    font-size: 1.0625rem;
     line-height: 1.6;
 }
 
-a {
-    color: inherit;
-}
-
-a:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
+/* The page scrolls inside .content-wrap; keep the Life grid fixed behind it. */
+.content-wrap canvas {
+    position: fixed;
+    inset: 0;
 }
 
 .playground {
+    position: relative;
     max-width: 68rem;
-    margin: 0 auto;
-    padding: 3rem 2rem 6rem;
+    margin: 4rem auto 6rem;
+    padding: 2.5rem 3rem 3.5rem;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    background: rgba(254, 254, 255, .7);
+    box-shadow: 0 .8rem 2.5rem rgba(40, 44, 52, .12);
+    backdrop-filter: blur(3px);
 }
 
-header {
-    margin-bottom: 4rem;
+.intro {
+    margin-bottom: 3.5rem;
 }
 
 .home-link {
     color: var(--ink-soft);
     font-size: .95rem;
-    text-decoration: none;
 }
 
-.home-link:hover {
-    color: var(--accent);
-}
-
-header h1 {
-    margin: 2.5rem 0 .5rem;
+.intro h1 {
+    margin: 2rem 0 .5rem;
     font-family: var(--font-display);
     font-size: 3.75rem;
     font-weight: 700;
@@ -64,8 +44,8 @@ header h1 {
     letter-spacing: -.025em;
 }
 
-header p {
-    max-width: 36rem;
+.intro p {
+    max-width: 38rem;
     margin: 0;
     color: var(--ink-soft);
     font-size: 1.15rem;
@@ -112,7 +92,7 @@ header p {
 }
 
 .viz h2 a {
-    text-decoration: none;
+    color: var(--ink);
 }
 
 .viz h2 a:hover {
@@ -120,30 +100,12 @@ header p {
 }
 
 .viz p {
-    margin: 0 0 1.25rem;
+    margin: 0 0 1.5rem;
 }
 
 .viz code {
     font-family: var(--font-mono);
     font-size: .85em;
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
-    margin: 0 0 1.5rem;
-    padding: 0;
-    list-style: none;
-}
-
-.tags li {
-    padding: .1rem .6rem;
-    border: 1px solid var(--line);
-    border-radius: .25rem;
-    color: var(--ink-soft);
-    font-family: var(--font-mono);
-    font-size: .75rem;
 }
 
 .viz-links {
@@ -153,18 +115,33 @@ header p {
 }
 
 .viz-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: .5em;
     font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: .04em;
-    text-decoration: none;
 }
 
-.viz-links a:hover {
-    color: var(--accent);
+.viz-links svg {
+    width: 1.1em;
+    height: 1.1em;
+    flex: none;
+}
+
+.icon-stroke {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linejoin: round;
+}
+
+.icon-fill {
+    fill: currentColor;
 }
 
 .viz-links .play {
-    padding: .55rem 1.6rem;
+    padding: .55rem 1.4rem;
     border: 1px solid var(--accent);
     border-radius: 999px;
     background: var(--paper);
@@ -179,15 +156,16 @@ header p {
 
 @media screen and (max-width: 48em) {
     .playground {
-        padding: 2rem 1.25rem 4rem;
+        margin: 1rem .75rem 5rem;
+        padding: 1.5rem 1.25rem 2.5rem;
     }
 
-    header {
+    .intro {
         margin-bottom: 2.5rem;
     }
 
-    header h1 {
-        margin-top: 1.75rem;
+    .intro h1 {
+        margin-top: 1.5rem;
         font-size: 2.75rem;
     }
 
