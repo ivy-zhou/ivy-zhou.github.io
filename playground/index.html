@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Playground - Ivy Zhou</title>
+    <meta name="description" content="Interactive visualizations by Ivy Zhou">
+    <meta name="author" content="Ivy Zhou" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/css/playground.css">
+</head>
+
+<body>
+    <main class="playground">
+        <header>
+            <a class="home-link" href="/">&larr; ivy zhou</a>
+            <h1>playground</h1>
+            <p>Interactive visualizations, mostly of how distributed training lays out tensors.</p>
+        </header>
+
+        <!-- To add a viz, copy an <article> and point it at a 16:9 screenshot in /img/playground/. -->
+        <section class="gallery">
+            <article class="viz">
+                <a class="viz-shot" href="/placement-garden/">
+                    <img src="/img/playground/placement-garden.jpg" width="1200" height="675"
+                        alt="Placement Garden: a solved level where four ranks each hold a strided 2 by 2 block of a 4 by 4 tensor">
+                </a>
+                <div class="viz-text">
+                    <h2><a href="/placement-garden/">Placement Garden</a></h2>
+                    <p>A Grid Garden-style game for PyTorch DTensor placements. Each plot is a rank: plant the seeds
+                        it holds, or write the <code>placements</code> that plant them, and learn how
+                        <code>Shard</code>, <code>Replicate</code> and <code>_StridedShard</code> split a tensor
+                        across a device mesh.</p>
+                    <ul class="tags">
+                        <li>DTensor</li>
+                        <li>26 levels</li>
+                    </ul>
+                    <nav class="viz-links">
+                        <a class="play" href="/placement-garden/">play</a>
+                        <a href="https://github.com/ivy-zhou/placement-garden">source</a>
+                    </nav>
+                </div>
+            </article>
+        </section>
+    </main>
+</body>
+
+</html>
