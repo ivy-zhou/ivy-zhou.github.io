@@ -122,10 +122,13 @@ header h1 span {
 }
 
 .pill-links > a {
-    display: inline-block;
+    display: inline-flex;
     width: 10em;
     margin: .75em;
     padding: 1em;
+    align-items: center;
+    justify-content: center;
+    gap: .55em;
     border: 1px solid var(--accent);
     border-radius: 999px;
     background: var(--paper);
@@ -134,6 +137,17 @@ header h1 span {
     letter-spacing: .04em;
     text-transform: lowercase;
     transition: color .18s ease, background-color .18s ease, transform .18s ease;
+}
+
+.pill-links svg {
+    width: 1.3em;
+    height: 1.3em;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .pill-links > a:hover,
